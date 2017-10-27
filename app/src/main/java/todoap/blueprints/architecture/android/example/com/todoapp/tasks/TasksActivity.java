@@ -18,6 +18,8 @@ public class TasksActivity extends AppCompatActivity {
     private static final String CURRENT_FILTERING_KEY = "CURRENT_FILTERING_KEY";
     private DrawerLayout mDrawerLayout;
 
+    private TasksPresenter mTasksPresenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
