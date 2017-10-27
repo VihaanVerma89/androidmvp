@@ -11,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import todoap.blueprints.architecture.android.example.com.todoapp.R;
+import todoap.blueprints.architecture.android.example.com.todoapp.util.ActivityUtils;
 
 public class TasksActivity extends AppCompatActivity {
 
@@ -35,6 +36,13 @@ public class TasksActivity extends AppCompatActivity {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         if (navigationView != null) {
             setupDrawerContent(navigationView);
+        }
+
+        TasksFragment tasksFragment = (TasksFragment) getSupportFragmentManager().findFragmentById(R.id.contentFrame);
+        if(tasksFragment == null)
+        {
+            tasksFragment = TasksFragment.newInstance();
+            ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), tasksFragment, R.id.contentFrame);
         }
     }
 
