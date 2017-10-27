@@ -10,8 +10,11 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.android.architecture.blueprints.todoapp.Injection;
+
 import todoap.blueprints.architecture.android.example.com.todoapp.R;
 import todoap.blueprints.architecture.android.example.com.todoapp.util.ActivityUtils;
+imp
 
 public class TasksActivity extends AppCompatActivity {
 
@@ -46,6 +49,8 @@ public class TasksActivity extends AppCompatActivity {
             tasksFragment = TasksFragment.newInstance();
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), tasksFragment, R.id.contentFrame);
         }
+
+        mTasksPresenter = new TasksPresenter(Injection.provideTaskRepository(getApplicationContext(), tasksFragment));
     }
 
 
