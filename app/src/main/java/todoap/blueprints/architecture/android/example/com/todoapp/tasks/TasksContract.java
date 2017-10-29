@@ -11,6 +11,7 @@ public interface TasksContract {
 
     public interface View extends BaseView<Presenter> {
 
+        void showAddTask();
     }
 
     public interface Presenter extends BasePresenter{

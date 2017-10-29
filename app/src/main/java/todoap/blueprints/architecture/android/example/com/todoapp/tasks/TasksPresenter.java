@@ -26,6 +26,6 @@ public class TasksPresenter implements TasksContract.Presenter{
 
     @Override
     public void addNewTask() {
-
+        mTasksView.showAddTask();
     }
 }

@@ -14,7 +14,6 @@ import com.example.android.architecture.blueprints.todoapp.Injection;
 
 import todoap.blueprints.architecture.android.example.com.todoapp.R;
 import todoap.blueprints.architecture.android.example.com.todoapp.util.ActivityUtils;
-imp
 
 public class TasksActivity extends AppCompatActivity {
 
@@ -50,7 +49,7 @@ public class TasksActivity extends AppCompatActivity {
             ActivityUtils.addFragmentToActivity(getSupportFragmentManager(), tasksFragment, R.id.contentFrame);
         }
 
-        mTasksPresenter = new TasksPresenter(Injection.provideTaskRepository(getApplicationContext(), tasksFragment));
+        mTasksPresenter = new TasksPresenter(Injection.provideTaskRepository(getApplicationContext()), tasksFragment);
     }
 
 
