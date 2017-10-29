@@ -10,10 +10,12 @@ import todoap.blueprints.architecture.android.example.com.todoapp.BaseView;
 public class AddEditTaskContract {
 
     public interface View extends BaseView<Presenter>{
-
+        void showEmptyTaskError();
+        void showTasksList();
     }
 
     public interface Presenter extends BasePresenter{
 
+        void saveTask(String title, String description);
     }
 }

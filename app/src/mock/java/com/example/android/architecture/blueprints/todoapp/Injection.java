@@ -4,7 +4,10 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.example.android.architecture.blueprints.todoapp.data.FakeTasksRemoteDataSource;
+
 import todoap.blueprints.architecture.android.example.com.todoapp.data.TasksRepository;
+import todoap.blueprints.architecture.android.example.com.todoapp.data.source.local.TasksLocalDataSource;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -14,9 +17,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class Injection {
 
-    public static TasksRepository provideTaskRepository(@NonNull Context context)
+    public static TasksRepository provideTasksRepository(@NonNull Context context)
     {
         checkNotNull(context);
-        return TasksRepository.getInstance();
+        return TasksRepository.getInstance(FakeTasksRemoteDataSource.getInstance(),
+                TasksLocalDataSource.getInstance(context) );
     }
 }

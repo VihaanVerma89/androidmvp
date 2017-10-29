@@ -6,6 +6,8 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.example.android.architecture.blueprints.todoapp.Injection;
+
 import todoap.blueprints.architecture.android.example.com.todoapp.R;
 import todoap.blueprints.architecture.android.example.com.todoapp.util.ActivityUtils;
 
@@ -63,8 +65,12 @@ public class AddEditTaskActivity extends AppCompatActivity {
             shouldLoadDataFromRepo = savedInstanceState.getBoolean(SHOULD_LOAD_DATA_FROM_REPO_KEY);
         }
 
-        mAddEditTaskPresenter = new AddEditTaskPresenter();
-
+        // Create the presenter
+        mAddEditTaskPresenter = new AddEditTaskPresenter(
+                taskId,
+                Injection.provideTasksRepository(getApplicationContext()),
+                addEditTaskFragment,
+                shouldLoadDataFromRepo);
     }
 
     private void setToolbarTitle(@Nullable String taskId) {

@@ -1,8 +1,11 @@
 package todoap.blueprints.architecture.android.example.com.todoapp.addedittask;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,5 +54,32 @@ public class AddEditTaskFragment extends Fragment implements AddEditTaskContract
     @Override
     public void setPresenter(AddEditTaskContract.Presenter presenter) {
         mPresenter = checkNotNull(presenter);
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        FloatingActionButton fab =
+                (FloatingActionButton) getActivity().findViewById(R.id.fab_edit_task_done);
+        fab.setImageResource(R.drawable.ic_done);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPresenter.saveTask(mTitle.getText().toString(), mDescription.getText().toString());
+            }
+        });
+    }
+
+
+    @Override
+    public void showEmptyTaskError() {
+        Snackbar.make(mTitle, getString(R.string.empty_task_message), Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showTasksList() {
+        getActivity().setResult(Activity.RESULT_OK);
+        getActivity().finish();
     }
 }

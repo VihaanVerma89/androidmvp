@@ -10,12 +10,12 @@ import todoap.blueprints.architecture.android.example.com.todoapp.BaseView;
 public interface TasksContract {
 
     public interface View extends BaseView<Presenter> {
-
         void showAddTask();
+        void showSuccessfullySavedMessage();
     }
 
     public interface Presenter extends BasePresenter{
-
+        void result(int requestCode, int resultCode);
         void addNewTask();
     }
 }
